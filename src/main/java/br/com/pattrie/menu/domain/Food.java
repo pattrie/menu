@@ -32,4 +32,11 @@ public class Food {
         this.image = foodRequestDTO.image();
         this.price = BigDecimal.valueOf(foodRequestDTO.price());
     }
+
+    public Food(final Long id, final FoodRequestDTO foodRequestDTO) {
+        this.id = id;
+        this.title = foodRequestDTO.title();
+        this.image = foodRequestDTO.image();
+        this.price = BigDecimal.valueOf(foodRequestDTO.price());
+    }
 }

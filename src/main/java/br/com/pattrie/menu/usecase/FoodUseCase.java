@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +21,17 @@ public class FoodUseCase {
         return repository.findAll()
                 .stream()
                 .map(FoodResponseDTO::new)
-                .collect(Collectors.toList());
+                .toList();
+    }
+
+    public FoodResponseDTO getBy(final Long id) {
+        return repository.findById(id).map(FoodResponseDTO::new).orElse(null);
+    }
+
+    public FoodResponseDTO updateBy(final Food food) {
+        if (repository.existsById(food.getId())) {
+            repository.save(food);
+        }
+        return null;
     }
 }
